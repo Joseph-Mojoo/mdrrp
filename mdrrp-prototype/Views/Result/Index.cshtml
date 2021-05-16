@@ -1,0 +1,74 @@
+﻿@model IEnumerable<mdrrp_prototype.Models.Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        @Html.ActionLink("Create New Project", "Create", "Project", null, new { @class = "btn btn-primary" })
+    </p>
+}
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<p style="margin-top:40px;">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text text-capitalize">Results recorded</h3>
+
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Component Name</th>
+                <th>Subcomponent Name</th>
+                <th>
+                    Indicator Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IntermediateIndicator.SubComponent.ProjectComponent.Name</td>
+                    <td>
+                        @item.IntermediateIndicator.SubComponent.Name
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IntermediateIndicator.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+
+                    <td>
+                        @item.Date.ToShortDateString()
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

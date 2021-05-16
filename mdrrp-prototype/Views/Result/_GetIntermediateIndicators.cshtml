@@ -1,0 +1,10 @@
+﻿
+<option value="">Please Select Indicator</option>
+@if (ViewBag.IntermediateIndicatorSelectList != null)
+{
+    foreach (var item in ViewBag.IntermediateIndicatorSelectList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}
+

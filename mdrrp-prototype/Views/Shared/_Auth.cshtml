@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDRRP</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="@Url.Action("Index", "Home",new {area=""})">
+                <img src="~/Content/img/logo.png" height="50px" class="pull-left" />
+            </a>
+            
+            
+        </div>
+        @Html.Partial("_LoginPartial")
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-lg-2">
+                <nav class="navbar navbar-default navbar-fixed-side">
+                    <div class="text-center menu-icon">
+                        <img src="~/Content/img/logo.png" height="70px"/>
+                    </div>
+                   
+                    <ul class="nav navbar-nav">
+
+                        @if (User.IsInRole("Administrator") | User.IsInRole("Project Manager"))
+                        {
+                            <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                            <li>@Html.ActionLink("Reports", "Create", "Report")</li>
+                            <li>@Html.ActionLink("Districts", "Index", "District")</li>
+
+                            if (User.IsInRole("Administrator") || User.IsInRole("Project Manager"))
+                            {
+
+                                <li>@Html.ActionLink("Users", "UserRoles", "Manage")</li>
+                            }
+
+                        }
+
+                        @if (User.IsInRole("Data Clerk"))
+                        {
+                            <li>@Html.ActionLink("Results", "Index", "Result")</li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-9 col-lg-10">
+                @RenderBody()
+                <hr/>
+                <footer>
+                    <p>&copy; Sparc Systems @DateTime.Now.Year. M&E MDRRP</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

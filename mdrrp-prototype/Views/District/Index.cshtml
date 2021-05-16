@@ -1,0 +1,48 @@
+﻿@model IEnumerable<mdrrp_prototype.Models.District>
+
+@{
+    ViewBag.Title = "Districts";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Districts Recorded</h2>
+<hr/>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text">Districts </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new {@class ="btn btn-info"}) |
+                       
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

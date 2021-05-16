@@ -1,0 +1,145 @@
+﻿@model mdrrp_prototype.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+   var user = (System.Security.Claims.ClaimsIdentity)User.Identity; 
+}
+
+<h2>Edit Account Details</h2>
+<div style="margin-bottom:60px;">
+    @Html.ActionLink("Back To Users", "UserRoles", "Manage", null, new { @class = "btn btn-info pull-right" })
+
+</div>
+
+
+<div class="panel panel-primary">
+    <div class="panel panel-heading">
+
+        <h3 class="heading-text">@user.FindFirstValue("UserName") Account Details</h3>
+    </div>
+    <div class="panel panel-body">
+        @using (Html.BeginForm("Edit", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="col-md-8">
+                <h6>THE <span class="text-danger">*</span> DENOTES REQUIRED FIELD</h6>
+                <hr />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.ValidationMessageFor(model => model.Id)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.DropDownList("Title", new List<SelectListItem>
+                          {
+                              new SelectListItem{Text = "Mr", Value ="Mr"},
+                              new SelectListItem{ Text = "Mrs", Value = "Mrs"},
+                              new SelectListItem{Text = "Miss", Value = "Miss"},
+                              new SelectListItem{ Text = "Ms", Value ="Ms"}
+
+                          }, "Select Title", new { @class = "form-control" }
+
+                          )
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                  
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("UserRole", "User Role", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.DropDownList("UserRole", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessage("UserRole", "", new { @class = "text-danger" })
+                        </div>
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                   
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <div class="form-group">
+                   
+                        <div class="col-md-6 col-md-offset-2">
+                            <input type="submit" value="Update Account" class="btn btn-warning btn-block" />
+
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                   
+                </div>
+            </div>
+            
+        </div>
+        }
+
+    </div>
+</div>
+
+

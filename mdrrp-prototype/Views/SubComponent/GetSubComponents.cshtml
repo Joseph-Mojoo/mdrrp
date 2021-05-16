@@ -1,0 +1,9 @@
+﻿<option value="">Please Select Subcomponents</option>
+@if (ViewBag.SubComponentOptions != null)
+{
+    foreach (var item in ViewBag.SubComponentOptions)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}
+

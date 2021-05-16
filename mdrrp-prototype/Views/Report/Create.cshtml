@@ -1,0 +1,103 @@
+﻿@using System.Web.UI.WebControls
+@model mdrrp_prototype.Models.ReportForm
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Create  Report</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="heading-text">Specify Report Parameters</h4>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("DisplayReport","Report",FormMethod.Post)) 
+        {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-horizontal">
+               
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model=>model.ProjectId, (SelectList)(ViewBag.ProjectId),new {@class="form-control"})
+                        @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Year",new SelectList(""),"--Please Select Year--",new {@class="form-control"})
+                        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Duration",null,new {@class="form-control"})
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Generate Report" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function() {
+
+
+            //get the project id of the selected project
+
+            var projectId = $("#ProjectId").val();
+
+            GetProjectRunningYears(projectId);
+
+            //hook projectId to a change event
+
+            var project = $("#ProjectId").on("change",
+                function () {
+                    var selectedProject = $(this).val();
+
+                  
+
+                    GetProjectRunningYears(selectedProject);
+                });
+
+        });
+
+        function GetProjectRunningYears(projectId) {
+
+            //send a request to the server to get the number of years for the project
+
+
+           
+            var result = $.get("/Report/GetProjectRunningYears?id=" + projectId).done(function(data) {
+
+                var years = $("#Year");
+
+                years.empty();
+
+                years.append(data);
+
+
+            });
+        }
+    </script>
+}

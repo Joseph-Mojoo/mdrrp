@@ -1,0 +1,183 @@
+﻿@model mdrrp_prototype.Models.Result
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+
+    
+}
+
+
+<hr />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Html.ActionLink("Back To Results", "Index", null, new { @class = "btn btn-info pull-right" })
+        <h4 class="heading-text text-capitalize">Record Results</h4>
+    </div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm("Save", "Result"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="col-md-8">
+
+                    <h6>THE <span class="text-danger">*</span> DENOTES REQUIRED FIELD</h6>
+                    <hr />
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.Label("Subcomponent Name", new { @class = "control-label col-md-2" })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.DropDownList("SubcomponentId", null, htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IntermediateIndicatorId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.DropDownList("IntermediateIndicatorId", new SelectList(""), "--Please select Indicator", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IntermediateIndicatorId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-danger">
+                                *
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Number" } })
+                                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-danger">
+                                *
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-danger">
+                                *
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-2">
+
+                                <input type="submit" value="Create Record" class="btn btn-primary btn-block" />
+
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+               
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+
+            //hook an event to the projectId element
+
+            $("#SubcomponentId").ready(function() {
+
+                //get the value of the project Id and
+
+
+                var subcomponentId = $("#SubcomponentId").val();
+
+                GetIndicators(subcomponentId);
+
+
+            });
+
+            $("#SubcomponentId").change(function() {
+
+                var subcomponentId = $(this).val();
+
+                GetIndicators(subcomponentId);
+
+               
+            });
+
+          
+
+
+        });
+
+        function GetIndicators(SubcomponentId) {
+
+            //fetch components from the system
+
+            $.ajax({
+
+                type: "Get",
+                url: "/Result/_GetIntermediateIndicators?id=" + SubcomponentId,
+                success: function(responce) {
+
+                    $("#IntermediateIndicatorId").empty();
+                    $("#IntermediateIndicatorId").append(responce);
+
+                }
+            });
+        }
+
+        function GetSubcomponents(componentId) {
+
+            //fetch components from the system
+
+            $.ajax({
+
+                type: "Get",
+                url: "/SubComponent/GetSubcomponents?id=" + componentId,
+                success: function(responce) {
+
+                    $("#SubcomponentId").empty();
+                    $("#SubcomponentId").append(responce);
+
+                }
+            });
+
+        }
+    </script>
+}

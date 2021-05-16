@@ -1,0 +1,8 @@
+﻿<option value="">Please Select Component</option>
+@if (ViewBag.ComponentOptions != null)
+{
+    foreach (var item in ViewBag.ComponentOptions)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

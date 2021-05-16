@@ -1,0 +1,60 @@
+﻿@using System.Collections
+@using mdrrp_prototype.Models
+
+
+@{
+    ViewBag.Title = "ViewAssignedProjects";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<br/>
+<p>
+    @Html.ActionLink("Add Project", "AssignManager", "Project", new { id = ViewBag.User.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to users", "UserRoles", "Manage", null, new { @class = "btn btn-info pull-right" })
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text">Project assigned to  @ViewBag.User.FirstName</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>
+                    Project Code
+                </th>
+                <th>
+                    Project Name
+                </th>
+
+                <th>
+                    Action
+                </th>
+            </tr>
+
+            @foreach (var item in (IEnumerable<Project>)ViewBag.User.Projects)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Remove Assignment", "RemoveAssignment", "Project", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "confirm('Are you sure you want to unassign project manager to this project? ')" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<mdrrp_prototype.Models.ProjectComponent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Components of @ViewBag.ProjectName project  </h2>
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div style="margin-bottom: 10px">
+    @Html.ActionLink("Create New", "Create", new { id = Request.Url.Segments.Last() }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to components", "Index", "Project", null, new { @class = "btn btn-info pull-right"})
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text">
+            @if (Model.Count() > 0)
+            {
+                @Model.First().Project.Name
+            }
+            Project Components List
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-responsive">
+            <tr>
+       
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Budget)
+                </th>
+
+       
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+           
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Budget)
+                    </td>
+
+          
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("Subcomponents", "Index","SubComponent", new { id = item.Id }, new { @class = "btn btn-default" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick="return confirm('Are you sure you want to delete the component?')" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

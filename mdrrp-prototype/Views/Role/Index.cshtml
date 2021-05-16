@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Roles Available</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new {@class="btn btn-primary"})
+
+    @Html.ActionLink("Assign Permissions", "Assign","Permission",null, new { @class = "btn btn-info " })
+
+    @Html.ActionLink("View All Permissions","Index","Permission", null,new{@class="btn btn-info pull-right"})
+</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text">Roles</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-condensed" id="Roles">
+            <thead>
+            <tr>
+                <th>
+                    Role Name
+                </th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var role in ViewBag.Roles)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>
+                  
+                    @Html.ActionLink("View Role Permissions","ViewPermissions","Permission", new{id = role.Id},new{@class="btn btn-success"})
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        </div>
+    </div>

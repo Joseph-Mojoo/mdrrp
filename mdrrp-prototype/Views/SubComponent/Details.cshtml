@@ -1,0 +1,138 @@
+﻿@using System.Data.Entity
+@model mdrrp_prototype.Models.SubComponent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Details of @Model.Name subcomponent</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@Html.ActionLink("Back To Subcomponent","Index", new{id = Model.ProjectComponentId }, new {@class ="btn btn-info pull-right"})
+<div>
+    <br/>
+    <div class="panel panel-default">
+        <dl class="dl-horizontal">
+
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectComponent.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Budget) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Budget)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DeletedFlag) :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DeletedFlag)
+            </dd>
+        </dl>
+    </div>
+    
+
+</div>
+@Html.ActionLink("Create Indicator", "Create", "IntemediateIndicator", new { id = Request.Url.Segments.Last() }, new { @class = "btn btn-primary" })
+<hr />
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="heading-text">Subcomponent Indicators</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-responsive">
+
+                <tr>
+                    <th>Subcomponent Name</th>
+                    <th>Unit</th>
+                    <th>Base Line</th>
+                    <th>Target</th>
+                    <td>Progress</td>
+                    <th>Action</th>
+                </tr>
+
+                <tbody>
+                    @if (Model.IntermediateIndicators.Count > 0)
+                    {
+                        foreach (var projectIndicator in Model.IntermediateIndicators.Where(i => i.DeletedFlag == false))
+                        {
+                            <tr>
+                                <td>
+                                    @projectIndicator.Name
+                                </td>
+                                <td>
+                                    @projectIndicator.Unit
+                                </td>
+                                <td>
+                                    @projectIndicator.BaseLine
+                                </td>
+                                <td>
+                                    @projectIndicator.Target
+                                </td>
+                                @{
+                                    var percentage = (@projectIndicator.Results.Sum(i => i.Value) / @projectIndicator.ProjectIndicator.Target) * 100;
+                                }
+
+
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="@projectIndicator.Results.Sum(i => i.Value)" aria-valuemin="0" aria-valuemax="@projectIndicator.ProjectIndicator.Target" style="width: @percentage%;">
+                                            <span class="sr-only">60% Complete</span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", "IntemediateIndicator", new { id = projectIndicator.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete the Indicator?')" })
+                                </td>
+                            </tr>
+                        }
+
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                No Indicators yet
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+   
+</div>
+

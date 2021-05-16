@@ -1,0 +1,169 @@
+﻿@model mdrrp_prototype.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Project Details</h2>
+<div style="margin-bottom: 60px">
+    @Html.ActionLink("Back to projects","Index","Project",null,new{@class="btn btn-info pull-right"})
+
+</div>
+<div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="text-muted">Project Details</h3>
+
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <dl class="dl-horizontal ">
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                    </li>
+
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ApprovalDate) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ApprovalDate)
+                        </dd>
+                    </li>
+
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ClosingDate) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ClosingDate)
+                        </dd>
+                    </li>
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Objective) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Objective)
+                        </dd>
+                    </li>
+
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IsRegionallyTagged) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.IsRegionallyTagged)
+                        </dd>
+                    </li>
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.BankIFCCollaboration) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BankIFCCollaboration)
+                        </dd>
+                    </li>
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DeletedFlag) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DeletedFlag)
+                        </dd>
+                    </li>
+                    <li class="list-group-item">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Budget) :
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Budget)
+                        </dd>
+                    </li>
+
+                </dl>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@Html.ActionLink("Create Indicator", "Create", "ProjectIndicator", new { id = Request.Url.Segments.Last() }, new { @class = "btn btn-primary" })
+
+    <div>
+        <br />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="heading-text">Project Level Indicators</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                        <th>Name</th>
+                        <th>Unit</th>
+                        <th>Base Line</th>
+                        <th>Target</th>
+                        <th>Action</th>
+                    </tr>
+                    <tbody>
+                        @if (Model.ProjectIndicators.Count > 0)
+                        {
+                            foreach (var projectIndicator in Model.ProjectIndicators.Where(i => i.DeletedFlag == false))
+                            {
+                                <tr>
+                                    <td>
+                                        @projectIndicator.Name
+                                    </td>
+                                    <td>
+                                        @projectIndicator.Unit
+                                    </td>
+                                    <td>
+                                        @projectIndicator.BaseLine
+                                    </td>
+                                    <td>
+                                        @projectIndicator.Target
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", "ProjectIndicator", new { id = projectIndicator.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete the Indicator?')" })
+                                    </td>
+                                </tr>
+                            }
+
+
+                        }
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                No Indicators yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+<hr />
+

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<mdrrp_prototype.Models.Project>
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Projects Available</h2>
+<hr/>
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        @Html.ActionLink("Create New Project", "Create","Project",null, new { @class="btn btn-primary"})
+    </p>
+}
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text">Projects Data</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApprovalDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClosingDate)
+                </th>
+                <th class="text-capitalize">
+                    Number of components
+
+
+                </th>
+       
+       
+                <th>
+                    @Html.DisplayNameFor(model => model.Budget)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                       @item.ApprovalDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.ClosingDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.ProjectComponents.Where(pc => pc.DeletedFlag == false).ToList().Count
+                    </td>
+       
+       
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Budget)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new {@class ="btn btn-info"}) |
+                        @Html.ActionLink("Indicators", "Details", new { id=item.Id }, new {@class ="btn btn-primary"}) |
+                        @Html.ActionLink("View Components","Index","Component", new {id = item.Id}, new{@class ="btn btn-default"}) |
+           
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete the Project?')" })
+                        }
+            
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

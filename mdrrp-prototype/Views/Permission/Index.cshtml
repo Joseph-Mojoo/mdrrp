@@ -1,0 +1,58 @@
+﻿@model IEnumerable<mdrrp_prototype.Models.Permission>
+
+@{
+    ViewBag.Title = "Permissions";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Permissions</h2>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<p>
+    @Html.ActionLink("Create New", "Create", "Permission", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to roles", "UserRoles", "Manage", null, new { @class = "btn btn-info pull-right" })
+</p>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text text-capitalize">Permissions created</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>Action</th>
+            </tr>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2" class="text-center">No permissions created yet</td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

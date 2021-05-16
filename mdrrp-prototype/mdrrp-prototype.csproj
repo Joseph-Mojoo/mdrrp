@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B687F2A6-DAD7-4247-B3E5-F6F451C00E61}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mdrrp_prototype</RootNamespace>
+    <AssemblyName>mdrrp-prototype</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Administrator\ComponentController.cs" />
+    <Compile Include="Controllers\Administrator\DistrictController.cs" />
+    <Compile Include="Controllers\Administrator\IntemediateIndicatorController.cs" />
+    <Compile Include="Controllers\Administrator\PermissionController.cs" />
+    <Compile Include="Controllers\Administrator\ProjectController.cs" />
+    <Compile Include="Controllers\Administrator\ProjectIndicatorController.cs" />
+    <Compile Include="Controllers\Administrator\RoleController.cs" />
+    <Compile Include="Controllers\Administrator\SubComponentController.cs" />
+    <Compile Include="Controllers\DataEntry\ResultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="CustomAuthorize\PermissionAuthorize.cs" />
+    <Compile Include="Datasets\ProjectReportDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectReportDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005082043414_InitialDatabaseMigration.cs" />
+    <Compile Include="Migrations\202005082043414_InitialDatabaseMigration.Designer.cs">
+      <DependentUpon>202005082043414_InitialDatabaseMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005082104111_SeedUser.cs" />
+    <Compile Include="Migrations\202005082104111_SeedUser.Designer.cs">
+      <DependentUpon>202005082104111_SeedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005082141129_AddedProjectModel.cs" />
+    <Compile Include="Migrations\202005082141129_AddedProjectModel.Designer.cs">
+      <DependentUpon>202005082141129_AddedProjectModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005082158329_AddedProjectComponentModel.cs" />
+    <Compile Include="Migrations\202005082158329_AddedProjectComponentModel.Designer.cs">
+      <DependentUpon>202005082158329_AddedProjectComponentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005112044399_AddedDistrictModel.cs" />
+    <Compile Include="Migrations\202005112044399_AddedDistrictModel.Designer.cs">
+      <DependentUpon>202005112044399_AddedDistrictModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005112142492_AddedDeletedFlagToDistrictModel.cs" />
+    <Compile Include="Migrations\202005112142492_AddedDeletedFlagToDistrictModel.Designer.cs">
+      <DependentUpon>202005112142492_AddedDeletedFlagToDistrictModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005112144178_AddedDefaultValueToDistrictDeletedFlag.cs" />
+    <Compile Include="Migrations\202005112144178_AddedDefaultValueToDistrictDeletedFlag.Designer.cs">
+      <DependentUpon>202005112144178_AddedDefaultValueToDistrictDeletedFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005130845543_AddedSubComponentModel.cs" />
+    <Compile Include="Migrations\202005130845543_AddedSubComponentModel.Designer.cs">
+      <DependentUpon>202005130845543_AddedSubComponentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005131942338_AddedIndiacatorModel.cs" />
+    <Compile Include="Migrations\202005131942338_AddedIndiacatorModel.Designer.cs">
+      <DependentUpon>202005131942338_AddedIndiacatorModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132053393_AddedDeletedFlagToIndicator.cs" />
+    <Compile Include="Migrations\202005132053393_AddedDeletedFlagToIndicator.Designer.cs">
+      <DependentUpon>202005132053393_AddedDeletedFlagToIndicator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132057371_AddedDefaultDeletedFlagValueForIndicator.cs" />
+    <Compile Include="Migrations\202005132057371_AddedDefaultDeletedFlagValueForIndicator.Designer.cs">
+      <DependentUpon>202005132057371_AddedDefaultDeletedFlagValueForIndicator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132133064_AddedProjectIndicatorModel.cs" />
+    <Compile Include="Migrations\202005132133064_AddedProjectIndicatorModel.Designer.cs">
+      <DependentUpon>202005132133064_AddedProjectIndicatorModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132140035_AddedProjectIndicatorModel1.cs" />
+    <Compile Include="Migrations\202005132140035_AddedProjectIndicatorModel1.Designer.cs">
+      <DependentUpon>202005132140035_AddedProjectIndicatorModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132201452_AddedProjectIndicatorAnnoation.cs" />
+    <Compile Include="Migrations\202005132201452_AddedProjectIndicatorAnnoation.Designer.cs">
+      <DependentUpon>202005132201452_AddedProjectIndicatorAnnoation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005142113272_AddedIntermediateIndicatorModel.cs" />
+    <Compile Include="Migrations\202005142113272_AddedIntermediateIndicatorModel.Designer.cs">
+      <DependentUpon>202005142113272_AddedIntermediateIndicatorModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005142331461_AddedResultModule.cs" />
+    <Compile Include="Migrations\202005142331461_AddedResultModule.Designer.cs">
+      <DependentUpon>202005142331461_AddedResultModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150012212_AddedDateAnnotationToResultModel.cs" />
+    <Compile Include="Migrations\202005150012212_AddedDateAnnotationToResultModel.Designer.cs">
+      <DependentUpon>202005150012212_AddedDateAnnotationToResultModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150014061_AddedDateAnnotationToResultModel1.cs" />
+    <Compile Include="Migrations\202005150014061_AddedDateAnnotationToResultModel1.Designer.cs">
+      <DependentUpon>202005150014061_AddedDateAnnotationToResultModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150020137_RemovedTimeElementOnDateToResultModel.cs" />
+    <Compile Include="Migrations\202005150020137_RemovedTimeElementOnDateToResultModel.Designer.cs">
+      <DependentUpon>202005150020137_RemovedTimeElementOnDateToResultModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005151235379_Modified RegisterViewModel.cs" />
+    <Compile Include="Migrations\202005151235379_Modified RegisterViewModel.Designer.cs">
+      <DependentUpon>202005151235379_Modified RegisterViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005151408151_AddedCurrencyDataTypeForProjectCOmponentBudget.cs" />
+    <Compile Include="Migrations\202005151408151_AddedCurrencyDataTypeForProjectCOmponentBudget.Designer.cs">
+      <DependentUpon>202005151408151_AddedCurrencyDataTypeForProjectCOmponentBudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005151410176_AddedCurrencyDataTypeForProjectBudget.cs" />
+    <Compile Include="Migrations\202005151410176_AddedCurrencyDataTypeForProjectBudget.Designer.cs">
+      <DependentUpon>202005151410176_AddedCurrencyDataTypeForProjectBudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005191207269_UpdatedProjectIndicatorBaseLineAndTargetProperties.cs" />
+    <Compile Include="Migrations\202005191207269_UpdatedProjectIndicatorBaseLineAndTargetProperties.Designer.cs">
+      <DependentUpon>202005191207269_UpdatedProjectIndicatorBaseLineAndTargetProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005191257271_AddCodePropertyForProjectModel.cs" />
+    <Compile Include="Migrations\202005191257271_AddCodePropertyForProjectModel.Designer.cs">
+      <DependentUpon>202005191257271_AddCodePropertyForProjectModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005191259463_AddTargetAndBaselineRange.cs" />
+    <Compile Include="Migrations\202005191259463_AddTargetAndBaselineRange.Designer.cs">
+      <DependentUpon>202005191259463_AddTargetAndBaselineRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005192038306_addedidentityuserfields.cs" />
+    <Compile Include="Migrations\202005192038306_addedidentityuserfields.designer.cs">
+      <DependentUpon>202005192038306_addedidentityuserfields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200339313_addedcustomfields.cs" />
+    <Compile Include="Migrations\202005200339313_addedcustomfields.designer.cs">
+      <DependentUpon>202005200339313_addedcustomfields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200552393_UpdateIntermediateIndicatorBaseLineAndTargetDataType.cs" />
+    <Compile Include="Migrations\202005200552393_UpdateIntermediateIndicatorBaseLineAndTargetDataType.Designer.cs">
+      <DependentUpon>202005200552393_UpdateIntermediateIndicatorBaseLineAndTargetDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201228045_UpdatedPermissionModel.cs" />
+    <Compile Include="Migrations\202005201228045_UpdatedPermissionModel.Designer.cs">
+      <DependentUpon>202005201228045_UpdatedPermissionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201256271_AddedDeletedFlagToPermission.cs" />
+    <Compile Include="Migrations\202005201256271_AddedDeletedFlagToPermission.Designer.cs">
+      <DependentUpon>202005201256271_AddedDeletedFlagToPermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201956047_RefreshedDatabase.cs" />
+    <Compile Include="Migrations\202005201956047_RefreshedDatabase.Designer.cs">
+      <DependentUpon>202005201956047_RefreshedDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005201956410_AddedPermissionsNavigationToIdentityRole.cs" />
+    <Compile Include="Migrations\202005201956410_AddedPermissionsNavigationToIdentityRole.Designer.cs">
+      <DependentUpon>202005201956410_AddedPermissionsNavigationToIdentityRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005202012580_UpdatedPermissionsModelNaviagtionProperty.cs" />
+    <Compile Include="Migrations\202005202012580_UpdatedPermissionsModelNaviagtionProperty.Designer.cs">
+      <DependentUpon>202005202012580_UpdatedPermissionsModelNaviagtionProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005202015407_UpdatedPermissionsModelNaviagtionProperty1.cs" />
+    <Compile Include="Migrations\202005202015407_UpdatedPermissionsModelNaviagtionProperty1.Designer.cs">
+      <DependentUpon>202005202015407_UpdatedPermissionsModelNaviagtionProperty1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005210547496_ApplicationRole.cs" />
+    <Compile Include="Migrations\202005210547496_ApplicationRole.Designer.cs">
+      <DependentUpon>202005210547496_ApplicationRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005210603305_UpdatedPermissionsModel.cs" />
+    <Compile Include="Migrations\202005210603305_UpdatedPermissionsModel.Designer.cs">
+      <DependentUpon>202005210603305_UpdatedPermissionsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200552393_AddePermissionModel.cs" />
+    <Compile Include="Migrations\202005200552393_AddePermissionModel.Designer.cs">
+      <DependentUpon>202005200552393_AddePermissionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005211158214_blank.cs" />
+    <Compile Include="Migrations\202005211158214_blank.Designer.cs">
+      <DependentUpon>202005211158214_blank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005220838485_AddedPivotTableForUsersAndProjects.cs" />
+    <Compile Include="Migrations\202005220838485_AddedPivotTableForUsersAndProjects.Designer.cs">
+      <DependentUpon>202005220838485_AddedPivotTableForUsersAndProjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005250920048_AddedPivotTableLinkingUserToSubcomponent.cs" />
+    <Compile Include="Migrations\202005250920048_AddedPivotTableLinkingUserToSubcomponent.Designer.cs">
+      <DependentUpon>202005250920048_AddedPivotTableLinkingUserToSubcomponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007280816577_AddedRequiredFieldsToSubcomponentModel.cs" />
+    <Compile Include="Migrations\202007280816577_AddedRequiredFieldsToSubcomponentModel.Designer.cs">
+      <DependentUpon>202007280816577_AddedRequiredFieldsToSubcomponentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007291312273_AddedDefaultComputedDateToResultModel.cs" />
+    <Compile Include="Migrations\202007291312273_AddedDefaultComputedDateToResultModel.Designer.cs">
+      <DependentUpon>202007291312273_AddedDefaultComputedDateToResultModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007291314480_RemoveDefaultComputedDateToResultModel.cs" />
+    <Compile Include="Migrations\202007291314480_RemoveDefaultComputedDateToResultModel.Designer.cs">
+      <DependentUpon>202007291314480_RemoveDefaultComputedDateToResultModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\District.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IntermediateIndicator.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\ProjectIndicator.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectComponent.cs" />
+    <Compile Include="Models\ProjectReportData.cs" />
+    <Compile Include="Models\ProjectToManagerAssignmentModel.cs" />
+    <Compile Include="Models\ReportForm.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RolePermission.cs" />
+    <Compile Include="Models\SubComponent.cs" />
+    <Compile Include="Models\SubcomponentToClerkModel.cs" />
+    <Compile Include="Models\UserRoleModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ProjectCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectCrystalReport.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\SubcomponentClerkViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\navbar-fixed-side.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Datasets\ProjectReportDataset.xsc">
+      <DependentUpon>ProjectReportDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\ProjectReportDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectReportDataset.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\ProjectReportDataset.xss">
+      <DependentUpon>ProjectReportDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Auth.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Component\Index.cshtml" />
+    <Content Include="Views\Component\Create.cshtml" />
+    <Content Include="Views\Component\Edit.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\District\Create.cshtml" />
+    <Content Include="Views\District\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\SubComponent\Index.cshtml" />
+    <Content Include="Views\SubComponent\Create.cshtml" />
+    <Content Include="Views\ProjectIndicator\Create.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Manage\UserRoles.cshtml" />
+    <Content Include="Views\Role\EditUser.cshtml" />
+    <Content Include="Views\SubComponent\Details.cshtml" />
+    <Content Include="Views\SubComponent\Edit.cshtml" />
+    <Content Include="Views\IntemediateIndicator\Create.cshtml" />
+    <Content Include="Views\Result\Index.cshtml" />
+    <Content Include="Views\Result\Create.cshtml" />
+    <Content Include="Views\Permission\Index.cshtml" />
+    <Content Include="Views\Permission\Create.cshtml" />
+    <Content Include="Views\Permission\Edit.cshtml" />
+    <Content Include="Views\Permission\Assign.cshtml" />
+    <Content Include="Views\Permission\ViewPermissions.cshtml" />
+    <Content Include="Views\Project\ViewAssignedProjects.cshtml" />
+    <Content Include="Views\Project\AssignManager.cshtml" />
+    <Content Include="Views\SubComponent\ViewAssignedSubcomponents.cshtml" />
+    <Content Include="Views\SubComponent\AssignSubcomponent.cshtml" />
+    <Content Include="Views\SubComponent\GetComponents.cshtml" />
+    <Content Include="Views\SubComponent\GetSubComponents.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Report\Create.cshtml" />
+    <Content Include="Views\Report\DisplayReport.cshtml" />
+    <Content Include="Views\Report\GetProjectRunningYears.cshtml" />
+    <Content Include="Views\Result\_GetIntermediateIndicators.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005082043414_InitialDatabaseMigration.resx">
+      <DependentUpon>202005082043414_InitialDatabaseMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005082104111_SeedUser.resx">
+      <DependentUpon>202005082104111_SeedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005082141129_AddedProjectModel.resx">
+      <DependentUpon>202005082141129_AddedProjectModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005082158329_AddedProjectComponentModel.resx">
+      <DependentUpon>202005082158329_AddedProjectComponentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005112044399_AddedDistrictModel.resx">
+      <DependentUpon>202005112044399_AddedDistrictModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005112142492_AddedDeletedFlagToDistrictModel.resx">
+      <DependentUpon>202005112142492_AddedDeletedFlagToDistrictModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005112144178_AddedDefaultValueToDistrictDeletedFlag.resx">
+      <DependentUpon>202005112144178_AddedDefaultValueToDistrictDeletedFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130845543_AddedSubComponentModel.resx">
+      <DependentUpon>202005130845543_AddedSubComponentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005131942338_AddedIndiacatorModel.resx">
+      <DependentUpon>202005131942338_AddedIndiacatorModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132053393_AddedDeletedFlagToIndicator.resx">
+      <DependentUpon>202005132053393_AddedDeletedFlagToIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132057371_AddedDefaultDeletedFlagValueForIndicator.resx">
+      <DependentUpon>202005132057371_AddedDefaultDeletedFlagValueForIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132133064_AddedProjectIndicatorModel.resx">
+      <DependentUpon>202005132133064_AddedProjectIndicatorModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132140035_AddedProjectIndicatorModel1.resx">
+      <DependentUpon>202005132140035_AddedProjectIndicatorModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132201452_AddedProjectIndicatorAnnoation.resx">
+      <DependentUpon>202005132201452_AddedProjectIndicatorAnnoation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005142113272_AddedIntermediateIndicatorModel.resx">
+      <DependentUpon>202005142113272_AddedIntermediateIndicatorModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005142331461_AddedResultModule.resx">
+      <DependentUpon>202005142331461_AddedResultModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150012212_AddedDateAnnotationToResultModel.resx">
+      <DependentUpon>202005150012212_AddedDateAnnotationToResultModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150014061_AddedDateAnnotationToResultModel1.resx">
+      <DependentUpon>202005150014061_AddedDateAnnotationToResultModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150020137_RemovedTimeElementOnDateToResultModel.resx">
+      <DependentUpon>202005150020137_RemovedTimeElementOnDateToResultModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005151235379_Modified RegisterViewModel.resx">
+      <DependentUpon>202005151235379_Modified RegisterViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005151408151_AddedCurrencyDataTypeForProjectCOmponentBudget.resx">
+      <DependentUpon>202005151408151_AddedCurrencyDataTypeForProjectCOmponentBudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005151410176_AddedCurrencyDataTypeForProjectBudget.resx">
+      <DependentUpon>202005151410176_AddedCurrencyDataTypeForProjectBudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005191207269_UpdatedProjectIndicatorBaseLineAndTargetProperties.resx">
+      <DependentUpon>202005191207269_UpdatedProjectIndicatorBaseLineAndTargetProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005191257271_AddCodePropertyForProjectModel.resx">
+      <DependentUpon>202005191257271_AddCodePropertyForProjectModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005191259463_AddTargetAndBaselineRange.resx">
+      <DependentUpon>202005191259463_AddTargetAndBaselineRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005192038306_addedidentityuserfields.resx">
+      <DependentUpon>202005192038306_addedidentityuserfields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200339313_addedcustomfields.resx">
+      <DependentUpon>202005200339313_addedcustomfields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200552393_UpdateIntermediateIndicatorBaseLineAndTargetDataType.resx">
+      <DependentUpon>202005200552393_UpdateIntermediateIndicatorBaseLineAndTargetDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201228045_UpdatedPermissionModel.resx">
+      <DependentUpon>202005201228045_UpdatedPermissionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201256271_AddedDeletedFlagToPermission.resx">
+      <DependentUpon>202005201256271_AddedDeletedFlagToPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201956047_RefreshedDatabase.resx">
+      <DependentUpon>202005201956047_RefreshedDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201956410_AddedPermissionsNavigationToIdentityRole.resx">
+      <DependentUpon>202005201956410_AddedPermissionsNavigationToIdentityRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005202012580_UpdatedPermissionsModelNaviagtionProperty.resx">
+      <DependentUpon>202005202012580_UpdatedPermissionsModelNaviagtionProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005202015407_UpdatedPermissionsModelNaviagtionProperty1.resx">
+      <DependentUpon>202005202015407_UpdatedPermissionsModelNaviagtionProperty1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005210547496_ApplicationRole.resx">
+      <DependentUpon>202005210547496_ApplicationRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005210603305_UpdatedPermissionsModel.resx">
+      <DependentUpon>202005210603305_UpdatedPermissionsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200552393_AddePermissionModel.resx">
+      <DependentUpon>202005200552393_AddePermissionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005211158214_blank.resx">
+      <DependentUpon>202005211158214_blank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005220838485_AddedPivotTableForUsersAndProjects.resx">
+      <DependentUpon>202005220838485_AddedPivotTableForUsersAndProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005250920048_AddedPivotTableLinkingUserToSubcomponent.resx">
+      <DependentUpon>202005250920048_AddedPivotTableLinkingUserToSubcomponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007280816577_AddedRequiredFieldsToSubcomponentModel.resx">
+      <DependentUpon>202007280816577_AddedRequiredFieldsToSubcomponentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291312273_AddedDefaultComputedDateToResultModel.resx">
+      <DependentUpon>202007291312273_AddedDefaultComputedDateToResultModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291314480_RemoveDefaultComputedDateToResultModel.resx">
+      <DependentUpon>202007291314480_RemoveDefaultComputedDateToResultModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProjectCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProjectCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1204</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1204/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,92 @@
+﻿@using System.Web.Mvc.Html
+@model IEnumerable<mdrrp_prototype.Models.UserRoleModel>
+@{
+    ViewBag.Title = "User Accounts";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>User Accounts</h2>
+
+@if (User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Create User", "Register", "Account", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("View Roles", "Index", "Role", null, new { @class = "btn btn-info pull-right" })
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<hr />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="heading-text"> Users</h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-condensed" id="UsersRoles">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @foreach (var user in Model)
+            {
+                if(user.Role == "Administrator")
+                {
+                    continue;
+                }
+                    <tr>
+                        <td>@user.FirstName   @user.LastName  </td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", "Account", new { id = user.UserId }, new { @class = "btn btn-info" })
+
+                            }
+                            @if (user.Role == "Project Manager" && User.IsInRole("Administrator"))
+                            {
+                                @Html.ActionLink("View assigned projects", "ViewAssignedProjects", "Project", new { id = user.UserId }, new { @class = "btn btn-success" })
+                            }
+                            else if (user.Role == "Data Clerk")
+                            {
+                                @Html.ActionLink("View assigned subcomponets", "ViewAssignedSubcomponents", "SubComponent", new { id = user.UserId }, new { @class = "btn btn-warning" })
+                            }
+
+
+                        </td>
+                    </tr>
+                
+
+            }
+        </table>
+    </div>
+
+
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $('#UsersWithRoles').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true
+            });
+        });
+    </script>
+}  

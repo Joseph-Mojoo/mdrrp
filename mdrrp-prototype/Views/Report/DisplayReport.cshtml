@@ -1,0 +1,115 @@
+﻿@using mdrrp_prototype.Models
+@model IEnumerable<mdrrp_prototype.Models.ProjectReportData>
+
+<p style="padding-top: 10px;padding-bottom:30px;">
+   @Html.ActionLink("Back Report Form","Create",null, new { @class="btn btn-info pull-right"})
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel panel-heading">
+        <h3 class="heading-text">  @ViewBag.ProjectName Project Report</h3>
+    </div>
+    <div class="panel-body">
+        <h4></h4>
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>
+                    Project Level Indicator Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Target)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BaseLine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remaining)
+                </th>
+                <td>
+                    Action
+                </td>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IndicatorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Target)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BaseLine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remaining)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#@item.Id" aria-expanded="false" aria-controls="collapseExample">
+                            View Intemediate Indicators
+                        </button>
+                    </td>
+                    
+
+                </tr>
+                <tr  class="collapse" id="@item.Id">
+                    
+                   <td colspan="5" class="bg-info">
+                       <table class="table table-bordered">
+                           <caption class="text-center"><h3 class="heading-text">@item.IndicatorName <b>- Intermediate Indicators List</b></h3></caption>
+                           <thead>
+                               <tr>
+                                   <th>Intermediate Indicator Name</th>
+                                   <th>BaseLine</th>
+                                   <th>Target</th>
+                                   <th>Number Of Times Collected</th>
+                                   <th>Total Value</th>
+                               </tr>
+
+                           </thead>
+                           <tbody>
+                               @foreach (var indicator in item.IntermediateIndicators)
+                               {
+                               <tr>
+                                   <td>@indicator.Name</td>
+                                   <td>@indicator.BaseLine</td>
+                                   <td>@indicator.Target</td>
+                                   <td>@indicator.Results.Count</td>
+                                   <td>@indicator.Results.Sum(r => (int)r.Value)</td>
+                               </tr>
+                               }
+                           </tbody>
+                       </table>
+                   </td>
+                    
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
+<p class="pull-right">
+    @Html.ActionLink("Save As PDF", "DownloadReport", new
+    {
+        reportType = "pdf",
+            id = ViewBag.ReportData.Id,
+            projectId = ViewBag.ReportData.ProjectId,
+            year = ViewBag.ReportData.Year,
+            duration = ViewBag.ReportData.Duration
+
+
+    }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Save As CSV", "DownloadReport", new
+    {
+        reportType = "csv",
+        id = ViewBag.ReportData.Id,
+        projectId = ViewBag.ReportData.ProjectId,
+        year = ViewBag.ReportData.Year,
+        duration = ViewBag.ReportData.Duration
+
+
+    }, new { @class = "btn btn-primary" })
+</p>

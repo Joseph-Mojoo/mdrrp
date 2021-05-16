@@ -1,0 +1,47 @@
+﻿@model mdrrp_prototype.Models.ProjectToManagerAssignmentModel
+
+@{
+    ViewBag.Title = "AssignManager";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Assign project to manager</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Html.ActionLink("Back",null, null, null, new{href=Request.UrlReferrer.ToString(), @class="btn btn-info pull-right"})
+        <h3 class="heading-text">Assign Project to Manager</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("AssignManager","Project", FormMethod.Post)) 
+        {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-horizontal">
+        
+               
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ProjectId",  null, new{@class="form-control"})
+                        @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.Hidden("UserId", Request.Url.Segments.Last())
+                @Html.Hidden("ProjectToManagerModelId",0)
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Assign" class="btn btn-default btn-block" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

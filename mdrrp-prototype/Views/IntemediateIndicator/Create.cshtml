@@ -1,0 +1,138 @@
+﻿@model mdrrp_prototype.Models.IntermediateIndicator
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Create Indicator</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Html.ActionLink("Back To Details", null, null, null, new {href = Request.UrlReferrer, @class = "btn btn-info pull-right"})
+        <h3 class="heading-text text-capitalize">Intermediate indicator</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Save", "IntemediateIndicator"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="col-md-8">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter of indicator" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.Unit, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BaseLine, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.BaseLine, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter indicator baseline" } })
+                            @Html.ValidationMessageFor(model => model.BaseLine, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Target, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Target, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter indicator target" } })
+                            @Html.ValidationMessageFor(model => model.Target, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                       
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataSourceMethodology, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.DataSourceMethodology, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter data source methodology" } })
+                            @Html.ValidationMessageFor(model => model.DataSourceMethodology, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Frequency, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Frequency, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter frequency of data collection" } })
+                            @Html.ValidationMessageFor(model => model.Frequency, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                       
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataCollector, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.DataCollector, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter name of data collector" } })
+                            @Html.ValidationMessageFor(model => model.DataCollector, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                       
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProjectIndicatorId, "Project Indicator Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownList("ProjectIndicatorId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectIndicatorId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+                     
+                    </div>
+
+
+                    @Html.Hidden("SubComponentId", Request.Url.Segments.Last())
+                    @Html.ValidationMessageFor(model => model.SubComponentId, "", new { @class = "text-danger" })
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default btn-block" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNet.Identity
+@model mdrrp_prototype.Models.ApplicationUser
+<br />
+<p>
+    @Html.ActionLink("Create New", "AssignSubcomponent", new { id = Request.Url.Segments.Last() }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to users","UserRoles","Manage",null,new {@class="btn btn-info pull-right"})
+</p>
+<hr/>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="heading-text">Subcomponents assigned to @Model.FirstName @Model.LastName</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <th>
+                        Subcomponent Name
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.SubComponents)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+           
+
+                        <td>
+               
+                            @Html.ActionLink("Remove assignment", "RemoveAssignment", new { userId = Request.Url.Segments.Last().ToString(), subcomponentId =  item.Id }, new {@class="btn btn-danger"})
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+

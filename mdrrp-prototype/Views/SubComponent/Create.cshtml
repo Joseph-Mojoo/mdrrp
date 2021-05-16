@@ -1,0 +1,93 @@
+﻿
+@model mdrrp_prototype.Models.SubComponent
+
+@{
+    ViewBag.Title = "Create Subcomponent";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Create Subcomponent</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Html.ActionLink("Back to subcomponents","Index","SubComponent",new {id = Request.Url.Segments.Last()}, new {@class="btn btn-info pull-right"})
+        <h3 class="heading-text">Subcomponent Details</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Save", "SubComponent"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <div class="col-md-8">
+                    <h6>THE <span class="text-danger">*</span> DENOTES REQUIRED FIELD</h6>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter Subcomponent name" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Enter Budget for subcomponent" } })
+                            @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2", })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Description, new { @class = " form-control", rows = "5", cols = "5" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            *
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.Hidden("ProjectComponentId", Request.Url.Segments.Last())
+                            @Html.ValidationMessageFor(model => model.ProjectComponentId, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-md-2 text-danger">
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-2">
+                            <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                        </div>
+                        <div class="col-md-2 text-danger">
+
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+                
+          
+        }
+    </div>
+</div>
+
+
+

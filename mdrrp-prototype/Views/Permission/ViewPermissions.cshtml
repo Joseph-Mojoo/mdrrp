@@ -1,0 +1,50 @@
+﻿@model mdrrp_prototype.Models.ApplicationRole
+
+@{
+    ViewBag.Title = "ViewPermissions";
+    Layout = "~/Views/Shared/_Auth.cshtml";
+}
+
+<h2>Permissions for @Model.Name</h2>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<div style="margin-bottom:50px">
+    @Html.ActionLink("Back to roles ", "Index", "Role", null, new { @class = "btn btn-info pull-right", })
+
+</div>
+
+<div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="heading-text">Permissions assigned</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var item in Model.Permissions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("Delete", "DeleteAssignment", "Permission", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+

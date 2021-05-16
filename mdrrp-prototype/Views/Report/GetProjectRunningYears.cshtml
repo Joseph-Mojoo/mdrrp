@@ -1,0 +1,15 @@
+﻿@{
+    IEnumerable<string> years = (IEnumerable<string>) ViewBag.Years;
+}
+
+<option value="">Please Select Year</option>
+
+@foreach (var year in years)
+{
+    <option value="@year">@year</option>
+}
+
+@if (years.Count() > 1)
+{
+    <option value="0">All</option>
+}
